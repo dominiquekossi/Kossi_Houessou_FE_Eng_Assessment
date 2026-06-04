@@ -1,0 +1,148 @@
+/* ============================================================
+   FEATURES — CSS residual.
+   Só o que NÃO tem utilitário Tailwind equivalente:
+   - grid Foundation (larguras calc() com gutters)
+   - all: unset (título e toggle do accordion)
+   - pseudo ::after "/" do número
+   - column-gap/padding com clamp()
+   - transições de abrir/fechar (max-height -> max-content) e do toggle
+   - aspect-ratio "auto x/y" e transição da ilustração
+   Layout/tipografia/cores/estados ficam em utilitários no Features.tsx.
+   Variáveis globais vêm de globals.css.
+   ============================================================ */
+
+/* ---- Grid Foundation (subconjunto) — gutters via calc(), sem utilitário ---- */
+.grid-x {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.cell {
+  flex: 0 0 auto;
+  min-height: 0;
+  min-width: 0;
+  width: 100%;
+}
+
+.grid-x > .small-12 {
+  width: 100%;
+}
+
+.grid-margin-x {
+  margin-left: -0.625rem;
+  margin-right: -0.625rem;
+}
+
+.grid-margin-x > .cell {
+  width: calc(100% - 1.25rem);
+  margin-left: 0.625rem;
+  margin-right: 0.625rem;
+}
+
+.grid-margin-x > .small-12 {
+  width: calc(100% - 1.25rem);
+}
+
+@media print, screen and (min-width: 1024px) {
+  .grid-x > .medium-7 { width: 58.33333%; }
+  .grid-x > .medium-5 { width: 41.66667%; }
+
+  .grid-margin-x {
+    margin-left: -0.9375rem;
+    margin-right: -0.9375rem;
+  }
+
+  .grid-margin-x > .cell {
+    width: calc(100% - 1.875rem);
+    margin-left: 0.9375rem;
+    margin-right: 0.9375rem;
+  }
+
+  .grid-margin-x > .medium-7 { width: calc(58.33333% - 1.875rem); }
+  .grid-margin-x > .medium-5 { width: calc(41.66667% - 1.875rem); }
+}
+
+/* ---- Accordion ---- */
+
+/* item: column-gap + padding-block com clamp/35px (borda/flex via utilitários) */
+.accItem {
+  column-gap: clamp(20px, 5vw, 45px);
+  padding-block: 35px;
+}
+
+/* "/" após o número, em ultraviolet */
+.accNum::after {
+  content: "/";
+  color: var(--color-ultraviolet);
+}
+
+/* título — all:unset isolado (reset) + fonte/medidas do source */
+.accTitle {
+  all: unset;
+  display: block;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: clamp(1.5rem, 3vw, 2.15rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--color-shell);
+}
+
+/* toggle +/- — all:unset isolado + estilos do source */
+.accToggle {
+  all: unset;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  margin-left: 1rem;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--color-shell);
+  cursor: pointer;
+  flex-shrink: 0;
+  user-select: none;
+  transition: transform var(--transition-snappy);
+}
+
+/* conteúdo — abre/fecha via max-height 0 -> max-content (interpolate-size) */
+.accContent {
+  overflow: hidden;
+  max-height: 0;
+  padding-top: 0;
+  visibility: hidden;
+  transition:
+    max-height var(--transition-smooth),
+    padding-top var(--transition-smooth),
+    visibility var(--transition-smooth);
+}
+
+.accContentOpen {
+  max-height: max-content;
+  padding-top: 20px;
+  visibility: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accContent {
+    transition: none;
+  }
+}
+
+/* ---- Ilustração ---- */
+
+/* container — aspect-ratio "auto x/y" (sem utilitário) */
+.illoBox {
+  aspect-ratio: auto 691 / 883;
+}
+
+@media (min-width: 1024px) {
+  .illoBox {
+    aspect-ratio: auto 883 / 1128;
+  }
+}
+
+/* imagem — transição de opacity no swap */
+.illoImg {
+  transition: opacity var(--transition-smooth);
+}

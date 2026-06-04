@@ -1,0 +1,92 @@
+@import "./globals.css";
+
+/* ============================================================
+   Tailwind v4 — @theme
+   Curated subset of Lambda design tokens, registered under the
+   namespaces Tailwind v4 requires to GENERATE utility classes
+   (--color-* → bg-/text-/border-, --font-* → font-, --spacing-* → p-/m-/gap-).
+
+   Values are LITERAL and identical to globals.css / styles_css.css.
+   The complete source of truth (all :root vars) remains in globals.css.
+   ============================================================ */
+
+@theme {
+  /* Colors — semantic */
+  --color-shell: #e7e6d9;
+  --color-terminal: #0b0b0b;
+  --color-terminal-deep: #000000;
+  --color-terminal-muted: #262625;
+  --color-ultraviolet: #6236f4;
+  --color-ultraviolet-400: #815ef6;
+  --color-purple: #6236f4;
+
+  /* Colors — neutrals used in sections */
+  --color-neutral-1000: #000000;
+  --color-neutral-900: #0b0b0b;
+  --color-neutral-800: #262625;
+  --color-neutral-400: #95948c;
+  --color-neutral-300: #b0afa6;
+  --color-neutral-100: #e7e6d9;
+  --color-neutral-0: #ffffff;
+
+  /* Fonts */
+  --font-sans: "Suisse Intl", Helvetica, Arial, sans-serif;
+  --font-mono: "Suisse Intl Mono", "Courier New", monospace;
+  --font-pixel: "apkarchivr21", monospace;
+
+  /* Spacing — Lambda named scale */
+  --spacing-4xs: 5px;
+  --spacing-3xs: 10px;
+  --spacing-2xs: 20px;
+  --spacing-xs: 40px;
+  --spacing-regular: 48px;
+  --spacing-sm: 60px;
+  --spacing-md: 80px;
+  --spacing-lg: 100px;
+  --spacing-xl: 160px;
+  --spacing-2xl: 240px;
+
+  /* Spacing — exact section measurements (px outside the 4px scale) */
+  --spacing-card: 610px; /* Hardware: card height / image max-width */
+  --spacing-card-img: 410px; /* Hardware: product image */
+  --spacing-card-rt: 170px; /* Hardware: description height */
+  --spacing-card-rt-top: 85px; /* Hardware: description top offset */
+
+  /* Extra breakpoint (Hero: h1 scales at 480px) */
+  --breakpoint-xs: 480px;
+
+  /* Tracking — exact values from source */
+  --tracking-tight: -0.01em;
+  --tracking-tighter: -0.02em;
+  --tracking-widest: 0.05em;
+
+  /* Fluid typography (clamp) from source, with paired line-height */
+  --text-display: clamp(2.5rem, 5vw, 4.5rem); /* Hardware heading */
+  --text-display--line-height: 1.1;
+  --text-h2: clamp(2.3rem, 6vw, 4.5rem); /* Features h2 */
+  --text-h2--line-height: 1.1;
+  --text-h5: clamp(1.5rem, 3vw, 2.15rem); /* accordion number + title */
+  --text-h5--line-height: 1.2;
+  --text-card: 24px; /* Hardware: card title */
+  --text-card--line-height: 31.2px;
+
+  /* Snappy easing from source (FontSwap / buttons) */
+  --ease-snappy: cubic-bezier(0.6, 0, 0.4, 1);
+
+  /* Hero — title scale (.h1-large); line-height via `leading-none` */
+  --text-hero-0: 2.6rem; /* base */
+  --text-hero-1: 3rem; /* ≥480px */
+  --text-hero-2: 4.5rem; /* ≥768px */
+  --text-hero-3: 6rem; /* ≥1024px */
+  --text-hero-4: 7.315rem; /* ≥1280px */
+
+  /* Hero — eyebrow (line-height 120%) */
+  --text-eyebrow: 1rem;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow-md: clamp(1.25rem, 2.5vw, 1.5rem);
+  --text-eyebrow-md--line-height: 1.2;
+
+  /* Hero — buttons (mono, line-height 150%) */
+  --text-btn: 0.875rem;
+  --text-btn--line-height: 1.5;
+}

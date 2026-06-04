@@ -1,0 +1,64 @@
+/* ============================================================
+   HARDWARE — CSS residual.
+   Só o que NÃO tem utilitário Tailwind equivalente:
+   - all: unset (reset total do <button>)
+   - transições exatas (cubic-bezier + delays do source)
+   - width: calc(100% + 2px) do indicador
+   - ajuste de margem do título
+   Layout, tipografia, cores, espaçamentos e estados ficam em
+   utilitários Tailwind no Hardware.tsx. Variáveis (--color-*,
+   --easing-*) são globais (globals.css).
+   ============================================================ */
+
+/* Card (<button>) — all:unset isolado (sem utilitários) para o reset
+   não conflitar; inclui a transição de largura e o estado ativo. */
+.hwCard {
+  all: unset;
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  background-color: var(--color-terminal-deep);
+  border: 1px solid var(--color-terminal-muted);
+  cursor: pointer;
+  text-align: left;
+  overflow: visible;
+  height: auto;
+  min-height: 300px;
+  flex: none;
+  transition: flex-basis 0.4s var(--easing-snappy);
+}
+
+@media (min-width: 768px) {
+  .hwCard {
+    height: 610px;
+    flex: 1 1 240px;
+  }
+  .hwCard.hwActive {
+    flex-basis: 46%;
+  }
+}
+
+/* Bloco de texto — transição de altura com delay 0.3s */
+.hwText {
+  transition: height 0.4s var(--easing-snappy) 0.3s;
+}
+
+/* Título do card — letter-spacing exato + margem negativa
+   (font-size/line-height vêm do token `text-card`) */
+.hwCardTitle {
+  letter-spacing: -0.24px;
+  margin: 0 0 -10px 0;
+}
+
+/* Descrição — transição de entrada com delay 0.5s */
+.hwRichText {
+  transition:
+    opacity 0.4s var(--easing-snappy) 0.5s,
+    transform 0.4s var(--easing-snappy) 0.5s;
+}
+
+/* Indicador — largura calc() + transição de cor */
+.hwIndicator {
+  width: calc(100% + 2px);
+  transition: background-color 0.4s var(--easing-snappy);
+}

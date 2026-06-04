@@ -1,0 +1,77 @@
+/* ============================================================
+   HERO — CSS residual.
+   Só o que NÃO tem utilitário Tailwind equivalente:
+   - min-height com calc()/dvh (fallback)
+   - z-index:1 do container das CTAs
+   - max-width %/text-wrap-style do eyebrow
+   - padding + sombra RGB + colapso no hover dos botões
+   - máscara lateral do <canvas> injetado pelo UnicornStudio
+   - estados pixel do FontSwap (text-shadow/box-shadow/mix-blend)
+   Layout/tipografia/cores ficam em utilitários no Hero.tsx / FontSwapTitle.tsx.
+   Variáveis globais vêm de globals.css.
+   ============================================================ */
+
+.heroSection {
+  min-height: calc(100vh - 100px);
+  min-height: calc(100dvh - 100px);
+}
+
+.heroTitleContainer {
+  position: relative;
+  z-index: 1;
+}
+
+.heroEyebrow {
+  max-width: 98%;
+  text-wrap-style: pretty;
+}
+@media (min-width: 768px) {
+  .heroEyebrow {
+    max-width: 80%;
+  }
+}
+
+/* Botões — padding exato + transição; sombra RGB e colapso no hover
+   (primário). O secundário não recebe sombra. */
+.heroBtn {
+  padding: 17px 36px;
+  transition:
+    box-shadow var(--transition-snappy),
+    color var(--transition-snappy),
+    background var(--transition-snappy);
+}
+.heroBtnPrimary {
+  box-shadow: var(--box-shadow-rgb);
+}
+.heroBtnPrimary:hover {
+  box-shadow: 0 0 0 0 transparent;
+}
+
+/* Background — máscara lateral do canvas injetado em runtime */
+.heroAnimContainer canvas {
+  overflow: hidden;
+  -webkit-mask: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+/* FontSwap — estados pixel (sem utilitário p/ text-shadow/box-shadow/mix-blend).
+   A transição multi-prop também fica aqui. base (opacity-0/font-pixel) via utilitários. */
+.heroSwapGlyph {
+  transition:
+    opacity var(--transition-snappy),
+    color var(--transition-snappy),
+    background-color var(--transition-snappy),
+    box-shadow var(--transition-snappy);
+}
+.heroSwapGlyph[data-variant="pixel"] {
+  opacity: 1;
+  color: var(--color-text-primary);
+  text-shadow: var(--text-shadow-rgb);
+}
+.heroSwapGlyph[data-variant="highlight"] {
+  opacity: 1;
+  color: var(--color-text-primary-dark);
+  background-color: var(--color-background-light);
+  mix-blend-mode: screen;
+  box-shadow: var(--box-shadow-rgb);
+}

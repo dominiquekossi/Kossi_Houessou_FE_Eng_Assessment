@@ -1,0 +1,459 @@
+@import "tailwindcss";
+
+/* ============================================================
+   LAMBDA.AI — FOUNDATION / SHARED VISUAL BASE
+   Source of truth: artifacts/styles_css.css
+
+   Contents ("Foundation" phase):
+   1. @font-face (Suisse Intl, Suisse Intl Mono, apkarchivr21)
+      — local-first with fallback to the HubSpot CDN
+   2. :root — Colors
+   3. :root — Typography
+   4. :root — Spacing
+   5. :root — RGB Shadows (+ retina override)
+   6. :root — Transitions / Easing
+   7. :root — Additional tokens (Hardware)
+   8. Base html / * reset
+   9. Shared utilities:
+      .container .sr-only .pt-xl .pb-xl .module-comp .sectionBorder .stack--md
+
+   Values are identical to the source — no simplifications or approximations.
+   ============================================================ */
+
+/* ============================================================
+   @font-face
+   Local at /fonts/* (public/fonts) with fallback to the HubSpot CDN.
+   The browser uses the first available font; if the local file
+   returns 404, it automatically falls back to the CDN URL.
+   ============================================================ */
+
+@font-face {
+  font-display: swap;
+  font-family: "Suisse Intl Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/SuisseIntlMono-Regular.woff2) format("woff2"),
+       url(/fonts/SuisseIntlMono-Regular.woff) format("woff"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntlMono-Regular.woff2) format("woff2"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntlMono-Regular.woff) format("woff");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Suisse Intl Mono";
+  font-style: normal;
+  font-weight: 600;
+  src: url(/fonts/SuisseIntlMono-Bold.woff2) format("woff2"),
+       url(/fonts/SuisseIntlMono-Bold.woff) format("woff"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntlMono-Bold.woff2) format("woff2"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntlMono-Bold.woff) format("woff");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Suisse Intl";
+  font-style: normal;
+  font-weight: 300;
+  src: url(/fonts/SuisseIntl-Light.woff2) format("woff2"),
+       url(/fonts/SuisseIntl-Light.woff) format("woff"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntl-Light.woff2) format("woff2"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntl-Light.woff) format("woff");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Suisse Intl";
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/SuisseIntl-Regular.woff2) format("woff2"),
+       url(/fonts/SuisseIntl-Regular.woff) format("woff"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntl-Regular.woff2) format("woff2"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntl-Regular.woff) format("woff");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Suisse Intl";
+  font-style: italic;
+  font-weight: 400;
+  src: url(/fonts/SuisseIntl-Italic.woff2) format("woff2"),
+       url(/fonts/SuisseIntl-Italic.woff) format("woff"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntl-Italic.woff2) format("woff2"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntl-Italic.woff) format("woff");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Suisse Intl";
+  font-style: normal;
+  font-weight: 600;
+  src: url(/fonts/SuisseIntl-SemiBold.woff2) format("woff2"),
+       url(/fonts/SuisseIntl-SemiBold.woff) format("woff"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntl-SemiBold.woff2) format("woff2"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntl-SemiBold.woff) format("woff");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Suisse Intl";
+  font-style: italic;
+  font-weight: 600;
+  src: url(/fonts/SuisseIntl-SemiBoldItalic.woff2) format("woff2"),
+       url(/fonts/SuisseIntl-SemiBoldItalic.woff) format("woff"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntl-SemiBoldItalic.woff2) format("woff2"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntl-SemiBoldItalic.woff) format("woff");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Suisse Intl";
+  font-style: normal;
+  font-weight: 700;
+  src: url(/fonts/SuisseIntl-Bold.woff2) format("woff2"),
+       url(/fonts/SuisseIntl-Bold.woff) format("woff"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntl-Bold.woff2) format("woff2"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntl-Bold.woff) format("woff");
+}
+
+@font-face {
+  ascent-override: 92%;
+  descent-override: 22%;
+  font-display: swap;
+  font-family: apkarchivr21;
+  font-style: normal;
+  font-weight: 400;
+  line-gap-override: 0%;
+  src: url(/fonts/apkarchivr21_regular-webfont.woff) format("woff"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/apkarchivr21_regular-webfont.woff) format("woff");
+}
+
+/* ============================================================
+   :root — Colors
+   ============================================================ */
+
+:root {
+  --color-neutral-1000: #000000;
+  --color-neutral-900: #0b0b0b;
+  --color-neutral-800: #262625;
+  --color-neutral-800-faded: rgba(37, 37, 37, .6);
+  --color-neutral-700: #42413e;
+  --color-neutral-600: #5e5d58;
+  --color-neutral-500: #797872;
+  --color-neutral-400: #95948c;
+  --color-neutral-300: #b0afa6;
+  --color-neutral-300-light: rgba(185, 184, 174, .2);
+  --color-neutral-200: #cccbbf;
+  --color-neutral-100: #e7e6d9;
+  --color-neutral-0: #ffffff;
+  --color-ultraviolet-100: #e0d7fd;
+  --color-ultraviolet-200: #c0affb;
+  --color-ultraviolet-300: #a186f8;
+  --color-ultraviolet-400: #815ef6;
+  --color-ultraviolet-500: #6236f4;
+  --color-ultraviolet-600: #4e2bc3;
+  --color-ultraviolet-700: #3b2092;
+  --color-ultraviolet-800: #271662;
+  --color-ultraviolet-900: #140b31;
+  --color-red-100: #facccc;
+  --color-red-200: #f59999;
+  --color-red-300: #f16666;
+  --color-red-400: #ec3333;
+  --color-red-500: #e70000;
+  --color-red-600: #b90000;
+  --color-red-700: #8b0000;
+  --color-red-800: #5c0000;
+  --color-red-900: #2e0000;
+  --color-green-100: #ccfacc;
+  --color-green-200: #99f599;
+  --color-green-300: #66f066;
+  --color-green-400: #33eb33;
+  --color-green-500: #00e600;
+  --color-green-600: #00b800;
+  --color-green-700: #008a00;
+  --color-green-800: #005c00;
+  --color-green-900: #002e00;
+  --color-blue-100: #ccccf7;
+  --color-blue-200: #9999f0;
+  --color-blue-300: #6666e8;
+  --color-blue-400: #3333e1;
+  --color-blue-500: #0000d9;
+  --color-blue-600: #0000ae;
+  --color-blue-700: #000082;
+  --color-blue-800: #000057;
+  --color-blue-900: #00002b;
+  --color-cyan-100: #ccfaf7;
+  --color-cyan-200: #99f5f0;
+  --color-cyan-300: #66f0e8;
+  --color-cyan-400: #33ebe1;
+  --color-cyan-500: #00e6d9;
+  --color-cyan-600: #00b8ae;
+  --color-cyan-700: #008a82;
+  --color-cyan-800: #005c57;
+  --color-cyan-900: #002e2b;
+  --color-magenta-100: #faccf7;
+  --color-magenta-200: #f599f0;
+  --color-magenta-300: #f166e8;
+  --color-magenta-400: #ec33e1;
+  --color-magenta-500: #e700d9;
+  --color-magenta-600: #b900ae;
+  --color-magenta-700: #8b0082;
+  --color-magenta-800: #5c0057;
+  --color-magenta-900: #2e002b;
+  --color-yellow-100: #fafacc;
+  --color-yellow-200: #f5f599;
+  --color-yellow-300: #f1f066;
+  --color-yellow-400: #eceb33;
+  --color-yellow-500: #e7e600;
+  --color-yellow-600: #b9b800;
+  --color-yellow-700: #8b8a00;
+  --color-yellow-800: #5c5c00;
+  --color-yellow-900: #2e2e00;
+  /* Semantic aliases */
+  --color-shell: var(--color-neutral-100);
+  --color-terminal: var(--color-neutral-900);
+  --color-neutral: var(--color-neutral-500);
+  --color-ultraviolet: var(--color-ultraviolet-500);
+  --color-red: var(--color-red-500);
+  --color-green: var(--color-green-500);
+  --color-blue: var(--color-blue-500);
+  --color-cyan: var(--color-cyan-500);
+  --color-magenta: var(--color-magenta-500);
+  --color-yellow: var(--color-yellow-500);
+  /* Background */
+  --color-background: var(--color-terminal);
+  --color-background-gray: var(--color-neutral-800);
+  --color-background-light: var(--color-shell);
+  --color-background-brand: var(--color-ultraviolet);
+  --color-background-black: var(--color-neutral-1000);
+  /* Text */
+  --color-text-primary: var(--color-shell);
+  --color-text-primary-dark: var(--color-terminal);
+  --color-text-secondary: var(--color-neutral-300);
+  --color-text-secondary-dark: var(--color-terminal);
+  --color-code-text: var(--color-green-200);
+  /* Buttons */
+  --color-button-primary-text: var(--color-terminal);
+  --color-button-primary-background: var(--color-shell);
+  --color-button-secondary-text: var(--color-shell);
+  --color-button-secondary-background: var(--color-ultraviolet);
+  --color-button-secondary-background-hover: var(--color-ultraviolet-400);
+  --color-button-tertiary-text: var(--color-shell);
+  --color-button-tertiary-background: transparent;
+  /* Links */
+  --color-text-link: var(--color-ultraviolet-300);
+  --color-text-link-hover: var(--color-ultraviolet);
+  /* Forms */
+  --color-form-text: var(--color-shell);
+  --color-form-label: var(--color-neutral-400);
+  --color-form-border: var(--color-shell);
+  --color-select-color: var(--color-neutral-400);
+  --color-form-placeholder: var(--color-neutral-400);
+  --color-section-label: var(--color-neutral-400);
+}
+
+/* ============================================================
+   :root — Typography
+   ============================================================ */
+
+:root {
+  --font-mono: "Suisse Intl Mono", "Courier New", monospace;
+  --font-sans: "Suisse Intl", Helvetica, Arial, sans-serif;
+  --font-pixel: "apkarchivr21", monospace;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --text-2xs: .6875rem;
+  --text-xs: .75rem;
+  --text-sm: .875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2.15rem;
+  --text-3xl: 3rem;
+  --text-4xl: 3.75rem;
+  --text-5xl: 4.5rem;
+  --text-6xl: 6rem;
+  --text-7xl: 7.315rem;
+  --leading-none: 100%;
+  --leading-tight: 110%;
+  --leading-snug: 120%;
+  --leading-normal: 130%;
+  --leading-relaxed: 150%;
+  --leading-loose: 160%;
+  --tracking-tighter: -.02em;
+  --tracking-tight: -.01em;
+  --tracking-normal: 0;
+  --tracking-wide: .01em;
+  --tracking-wider: .02em;
+  --tracking-widest: .05em;
+}
+
+/* ============================================================
+   :root — Spacing
+   ============================================================ */
+
+:root {
+  --space-0: 0;
+  --space-4xs: 5px;
+  --space-3xs: 10px;
+  --space-2xs: 20px;
+  --space-xs: 40px;
+  --space-regular: 48px;
+  --space-sm: 60px;
+  --space-md: 80px;
+  --space-lg: 100px;
+  --space-xl: 160px;
+  --space-2xl: 240px;
+}
+
+/* ============================================================
+   :root — Shadows (default)
+   ============================================================ */
+
+:root {
+  --box-shadow-rgb: 0 .99px 0 0 #ff0, .99px 0 0 0 #0ff, 1.98px .99px 0 0 #0f0, 0 -.99px 0 0 #00f, -.99px 0 0 0 #f0f, -1.98px 0 0 0 #f00;
+  --text-shadow-rgb: 0 .99px 0 #ff0, .99px 0 0 #0ff, 1.98px .99px 0 #0f0, 0 -.99px 0 #00f, -.99px 0 0 #f0f, -1.98px 0 0 #f00;
+}
+
+/* Retina/high-res override (smaller shadow offset) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  :root {
+    --box-shadow-rgb: 0 .5px 0 0 #ff0, .5px 0 0 0 #0ff, 1px .5px 0 0 #0f0, 0 -.5px 0 0 #00f, -.5px 0 0 0 #f0f, -1px 0 0 0 #f00;
+    --text-shadow-rgb: 0 .5px 0 #ff0, .5px 0 0 #0ff, 1px .5px 0 #0f0, 0 -.5px 0 #00f, -.5px 0 0 #f0f, -1px 0 0 #f00;
+  }
+}
+
+/* ============================================================
+   :root — Transitions / Easing
+   ============================================================ */
+
+:root {
+  --transition-snappy: .1s cubic-bezier(.6, 0, .4, 1);
+  --transition-smooth: .4s cubic-bezier(.6, 0, .4, 1);
+  --easing-snappy: cubic-bezier(.6, 0, .4, 1);
+  --easing-smooth: cubic-bezier(.6, 0, .4, 1);
+}
+
+/* ============================================================
+   :root — Additional tokens (Hardware section)
+   ============================================================ */
+
+:root {
+  --color-terminal-deep: #000000;
+  --color-terminal-muted: #262625;
+  --color-purple: #6236F4;
+}
+
+/* ============================================================
+   Base — html / *
+   ============================================================ */
+
+html {
+  interpolate-size: allow-keywords;
+  box-sizing: border-box;
+  height: 100%;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  scroll-behavior: smooth;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: var(--font-weight-regular);
+  line-height: var(--leading-relaxed);
+  letter-spacing: var(--tracking-normal);
+  color: var(--color-text-secondary);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/* Body reset — inherits background/color from base and removes the agent's default margin */
+body {
+  margin: 0;
+  min-height: 100%;
+  background-color: var(--color-background);
+  color: var(--color-text-secondary);
+}
+
+/* ============================================================
+   Utilities — .container
+   ============================================================ */
+
+.container {
+  width: 100%;
+  max-width: 1398px;
+  margin-inline: auto;
+  padding-inline: 15px;
+}
+
+/* ============================================================
+   Utilities — .sr-only
+   ============================================================ */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ============================================================
+   Utilities — .pt-xl / .pb-xl
+   ============================================================ */
+
+.pt-xl {
+  padding-top: clamp(var(--space-lg), 12vw, var(--space-xl));
+}
+
+.pb-xl {
+  padding-bottom: clamp(var(--space-lg), 12vw, var(--space-xl));
+}
+
+/* ============================================================
+   Utilities — .stack--md
+   ============================================================ */
+
+.stack--md > * + * {
+  margin-top: var(--space-md);
+}
+
+/* ============================================================
+   Layout — .module-comp / .sectionBorder
+   ============================================================ */
+
+.module-comp {
+  position: relative;
+  background-color: var(--color-background);
+}
+
+.module-comp .richtext h2,
+.module-comp .richtext h3,
+.module-comp .richtext h4,
+.module-comp .richtext h5,
+.module-comp .richtext h6 {
+  margin-top: 0;
+}
+
+.module-comp .sectionBorder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px solid var(--color-background-gray);
+}
+
+.module-comp.no-border .sectionBorder {
+  display: none;
+}
