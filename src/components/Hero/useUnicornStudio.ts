@@ -1,14 +1,14 @@
 import { useEffect, type RefObject } from "react";
 
 /**
- * Carrega o runtime self-hosted do UnicornStudio (v1.4.33, em /unicorn/) uma
- * única vez e inicializa a cena "Superintelligence II" (export JSON do
- * lambda.ai capturado via DevTools) dentro do elemento fornecido.
+ * Loads the self-hosted UnicornStudio runtime (v1.4.33, at /unicorn/) once
+ * and initialises the "Superintelligence II" scene (export JSON from
+ * lambda.ai captured via DevTools) inside the provided element.
  *
- * Reproduz o background animado WebGL real (gradient > wisps > vignette >
- * chromab > voronoi > bloom > projection) em vez de uma imagem estática.
+ * Reproduces the real animated WebGL background (gradient > wisps > vignette >
+ * chromab > voronoi > bloom > projection) instead of a static image.
  *
- * Respeita prefers-reduced-motion: reduce — nesse caso a cena não é montada.
+ * Respects prefers-reduced-motion: reduce — in that case the scene is not mounted.
  */
 
 const RUNTIME_SRC = "/unicorn/unicornStudio.umd.js";
@@ -38,7 +38,7 @@ declare global {
   }
 }
 
-// Promise singleton para garantir que o UMD seja injetado uma só vez.
+// Promise singleton to ensure the UMD is injected only once.
 let runtimePromise: Promise<UnicornStudioApi> | null = null;
 
 function loadRuntime(): Promise<UnicornStudioApi> {
@@ -83,7 +83,7 @@ export function useUnicornStudio(targetRef: RefObject<HTMLElement | null>) {
     const element = targetRef.current;
     if (!element) return;
 
-    // Não montar a cena WebGL quando o usuário pede movimento reduzido.
+    // Do not mount the WebGL scene when the user requests reduced motion.
     const prefersReducedMotion = window.matchMedia?.(
       "(prefers-reduced-motion: reduce)",
     ).matches;
@@ -105,7 +105,7 @@ export function useUnicornStudio(targetRef: RefObject<HTMLElement | null>) {
       )
       .then((result) => {
         if (cancelled) {
-          // Componente desmontou antes da cena resolver — destruir imediatamente.
+          // Component unmounted before the scene resolved — destroy immediately.
           const list = Array.isArray(result) ? result : [result];
           list.forEach((s) => s?.destroy?.());
           return;
@@ -113,8 +113,8 @@ export function useUnicornStudio(targetRef: RefObject<HTMLElement | null>) {
         scenes = Array.isArray(result) ? result : [result];
       })
       .catch((error) => {
-        // Fallback silencioso: se o runtime/cena falhar (ex.: offline, sem WebGL2),
-        // o Hero permanece com o fundo preto da seção. Não quebra a página.
+        // Silent fallback: if the runtime/scene fails (e.g.: offline, no WebGL2),
+        // the Hero keeps the section's black background. Does not break the page.
         console.warn("UnicornStudio background not initialised:", error);
       });
 

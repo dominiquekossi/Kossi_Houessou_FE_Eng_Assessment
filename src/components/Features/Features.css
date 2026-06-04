@@ -1,17 +1,17 @@
 /* ============================================================
-   FEATURES — CSS residual.
-   Só o que NÃO tem utilitário Tailwind equivalente:
-   - grid Foundation (larguras calc() com gutters)
-   - all: unset (título e toggle do accordion)
-   - pseudo ::after "/" do número
-   - column-gap/padding com clamp()
-   - transições de abrir/fechar (max-height -> max-content) e do toggle
-   - aspect-ratio "auto x/y" e transição da ilustração
-   Layout/tipografia/cores/estados ficam em utilitários no Features.tsx.
-   Variáveis globais vêm de globals.css.
+   FEATURES — residual CSS.
+   Only what has NO equivalent Tailwind utility:
+   - Foundation grid (calc() widths with gutters)
+   - all: unset (accordion title and toggle)
+   - pseudo ::after "/" on the number
+   - column-gap/padding with clamp()
+   - open/close transitions (max-height -> max-content) and toggle
+   - aspect-ratio "auto x/y" and illustration transition
+   Layout/typography/colors/states live as utilities in Features.tsx.
+   Global variables come from globals.css.
    ============================================================ */
 
-/* ---- Grid Foundation (subconjunto) — gutters via calc(), sem utilitário ---- */
+/* ---- Foundation Grid (subset) — gutters via calc(), no utility ---- */
 .grid-x {
   display: flex;
   flex-flow: row wrap;
@@ -64,19 +64,19 @@
 
 /* ---- Accordion ---- */
 
-/* item: column-gap + padding-block com clamp/35px (borda/flex via utilitários) */
+/* item: column-gap + padding-block with clamp/35px (border/flex via utilities) */
 .accItem {
   column-gap: clamp(20px, 5vw, 45px);
   padding-block: 35px;
 }
 
-/* "/" após o número, em ultraviolet */
+/* "/" after the number, in ultraviolet */
 .accNum::after {
   content: "/";
   color: var(--color-ultraviolet);
 }
 
-/* título — all:unset isolado (reset) + fonte/medidas do source */
+/* title — all:unset isolated (reset) + font/measurements from source */
 .accTitle {
   all: unset;
   display: block;
@@ -89,7 +89,7 @@
   color: var(--color-shell);
 }
 
-/* toggle +/- — all:unset isolado + estilos do source */
+/* toggle +/- — all:unset isolated + styles from source */
 .accToggle {
   all: unset;
   height: 100%;
@@ -105,7 +105,7 @@
   transition: transform var(--transition-snappy);
 }
 
-/* conteúdo — abre/fecha via max-height 0 -> max-content (interpolate-size) */
+/* content — opens/closes via max-height 0 -> max-content (interpolate-size) */
 .accContent {
   overflow: hidden;
   max-height: 0;
@@ -129,9 +129,9 @@
   }
 }
 
-/* ---- Ilustração ---- */
+/* ---- Illustration ---- */
 
-/* container — aspect-ratio "auto x/y" (sem utilitário) */
+/* container — aspect-ratio "auto x/y" (no utility) */
 .illoBox {
   aspect-ratio: auto 691 / 883;
 }
@@ -142,7 +142,7 @@
   }
 }
 
-/* imagem — transição de opacity no swap */
+/* image — opacity transition on swap */
 .illoImg {
   transition: opacity var(--transition-smooth);
 }

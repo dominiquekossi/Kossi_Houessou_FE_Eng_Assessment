@@ -1,17 +1,17 @@
 /* ============================================================
-   HARDWARE — CSS residual.
-   Só o que NÃO tem utilitário Tailwind equivalente:
-   - all: unset (reset total do <button>)
-   - transições exatas (cubic-bezier + delays do source)
-   - width: calc(100% + 2px) do indicador
-   - ajuste de margem do título
-   Layout, tipografia, cores, espaçamentos e estados ficam em
-   utilitários Tailwind no Hardware.tsx. Variáveis (--color-*,
-   --easing-*) são globais (globals.css).
+   HARDWARE — residual CSS.
+   Only what has NO equivalent Tailwind utility:
+   - all: unset (full reset of the <button>)
+   - exact transitions (cubic-bezier + delays from source)
+   - width: calc(100% + 2px) on the indicator
+   - title margin adjustment
+   Layout, typography, colors, spacing and states live as
+   Tailwind utilities in Hardware.tsx. Variables (--color-*,
+   --easing-*) are global (globals.css).
    ============================================================ */
 
-/* Card (<button>) — all:unset isolado (sem utilitários) para o reset
-   não conflitar; inclui a transição de largura e o estado ativo. */
+/* Card (<button>) — all:unset isolated (no utilities) for the reset
+   not to conflict; includes the width transition and the active state. */
 .hwCard {
   all: unset;
   box-sizing: border-box;
@@ -38,26 +38,26 @@
   }
 }
 
-/* Bloco de texto — transição de altura com delay 0.3s */
+/* Text block — height transition with 0.3s delay */
 .hwText {
   transition: height 0.4s var(--easing-snappy) 0.3s;
 }
 
-/* Título do card — letter-spacing exato + margem negativa
-   (font-size/line-height vêm do token `text-card`) */
+/* Card title — exact letter-spacing + negative margin
+   (font-size/line-height come from the `text-card` token) */
 .hwCardTitle {
   letter-spacing: -0.24px;
   margin: 0 0 -10px 0;
 }
 
-/* Descrição — transição de entrada com delay 0.5s */
+/* Description — enter transition with 0.5s delay */
 .hwRichText {
   transition:
     opacity 0.4s var(--easing-snappy) 0.5s,
     transform 0.4s var(--easing-snappy) 0.5s;
 }
 
-/* Indicador — largura calc() + transição de cor */
+/* Indicator — calc() width + color transition */
 .hwIndicator {
   width: calc(100% + 2px);
   transition: background-color 0.4s var(--easing-snappy);
